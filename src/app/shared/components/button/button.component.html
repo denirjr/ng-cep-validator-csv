@@ -1,0 +1,10 @@
+<ng-container *ngIf="title">
+  <!-- @TODO - change scss -->
+  <button
+    (click)="action()"
+    [disabled]="isDisabled"
+    class="pure-material-button-contained"
+  >
+    {{ title }}
+  </button>
+</ng-container>

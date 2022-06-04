@@ -1,0 +1,6 @@
+$primary-color: #8AD5DD;
+
+@mixin modal-theme($theme, $text-align) {
+  color: $theme;
+  text-align: $text-align;
+}

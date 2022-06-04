@@ -1,0 +1,8 @@
+$primary: #8ad5dd;
+$secundary: #db2b42;
+$disabled: #DDDDDD;
+
+@mixin button-theme($theme, $text-color) {
+  color: $text-color;
+  background-color: $theme;
+}

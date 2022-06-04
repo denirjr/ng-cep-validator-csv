@@ -1,0 +1,18 @@
+<ng-container *ngIf="tableConfig">
+  <table>
+    <ng-container *ngIf="tableConfig?.columns?.length">
+      <th *ngFor="let column of tableConfig?.columns">{{ column }}</th>
+    </ng-container>
+
+    <ng-container *ngIf="tableConfig?.rows?.length">
+      <tr
+        (click)="getTableItem(idx, row)"
+        *ngFor="let row of tableConfig?.rows; let idx = index"
+      >
+        <td>{{ row?.name }}</td>
+        <td>{{ row?.cep }}</td>
+        <td>{{ row?.score }}</td>
+      </tr>
+    </ng-container>
+  </table>
+</ng-container>
