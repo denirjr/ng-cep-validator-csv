@@ -1,6 +1,6 @@
 export interface TableConfig {
   columns: [string, string, string];
-  rows: [Row, Row, Row, Row, Row];
+  rows: Row[];
 }
 
 export interface Row {

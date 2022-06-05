@@ -1,6 +1,6 @@
 import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Injectable, Injector } from '@angular/core';
+import { BodyInjectorService } from 'src/app/shared/services/body-injector/body-injector.service';
 
-import { BodyInjectorService } from '../../../../shared/services/body-injector.service';
 import { ModalComponent } from '../modal.component';
 import { ModalConfig } from '../models/modal-config';
 import { ModalRef } from '../models/modal-ref';

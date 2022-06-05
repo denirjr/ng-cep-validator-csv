@@ -14,7 +14,7 @@ export class HomeComponent {
 
   public modalRef!: ModalRef;
 
-public modalType = ModalType;
+  public modalType = ModalType;
 
   public tableConfig: TableConfig = {
     columns: ['Nome', 'CEP', 'Score'],
@@ -36,8 +36,8 @@ public modalType = ModalType;
       title: type === ModalType.UPLOAD ? 'Upload - CSV' : 'Editar dados',
     });
   }
+  
 }
-
 enum ModalType {
   UPLOAD = 'upload',
   EDIT = 'edit',

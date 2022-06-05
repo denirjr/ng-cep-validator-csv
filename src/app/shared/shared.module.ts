@@ -5,6 +5,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { TableComponent } from './components/table/table.component';
 import { TextFieldComponent } from './components/text-field/text-field.component';
+import { CsvUploadComponent } from './components/csv-upload/csv-upload.component';
 
 @NgModule({
   declarations: [
@@ -12,8 +13,9 @@ import { TextFieldComponent } from './components/text-field/text-field.component
     ButtonComponent,
     TextFieldComponent,
     ModalComponent,
+    CsvUploadComponent,
   ],
   imports: [CommonModule],
-  exports: [TableComponent, ButtonComponent],
+  exports: [TableComponent, ButtonComponent, CsvUploadComponent],
 })
 export class SharedModule {}
