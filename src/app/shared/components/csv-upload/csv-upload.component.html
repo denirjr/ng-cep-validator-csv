@@ -1,7 +1,19 @@
-<input
-  type="file"
-  name="File Upload"
-  id="txtFileUpload"
-  (change)="getCsv($event)"
-  accept=".csv"
-/>
+<div class="container">
+  <div class="card">
+    <h3>Upload Files</h3>
+    <div class="drop_box">
+      <header>
+        <h4>Select File here</h4>
+      </header>
+      <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
+      <input
+        type="file"
+        name="File Upload"
+        id="txtFileUpload"
+        (change)="getCsv($event)"
+        accept=".csv"
+      />
+      <!-- <button class="btn">Choose File</button> -->
+    </div>
+  </div>
+</div>

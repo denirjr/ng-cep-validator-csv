@@ -1,33 +1,63 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subscriber } from 'rxjs';
+
+import { CsvRecord } from './models/csv-record';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CsvService {
-  public get($event: Event): void {
+  public read($event: Event): Observable<CsvRecord> {
     const input = $event.target as HTMLInputElement;
     const reader = new FileReader();
     const file: File = (input.files as FileList)[0];
 
-    if (this.isValidCSVFile(file)) {
-      reader.readAsText(file);
+    reader.readAsText(file);
 
+    return new Observable((observer: Subscriber<CsvRecord>) => {
       reader.onload = () => {
-        let csvData = reader.result;
-        let csvRecords = (<string>csvData).split(/\r\n|\n/);
+        const csvData = reader?.result;
+        const csvRecords = (<string>csvData)?.split(/\r\n|\n/);
 
-        csvRecords.forEach((item, index) => {
-          const currentRecord = (<string>csvRecords[index]).split(',');
-          console.log(currentRecord);
-        });
+        observer.next(this.parseCsvRecord(csvRecords));
+        observer.complete();
       };
 
-      reader.onerror = function () {
-        console.error('error is occured while reading file!');
+      reader.onerror = () => {
+        observer.error('error is occurred while reading file!');
       };
-    }
+    });
   }
 
+  private parseCsvRecord(csvRecords: string[]): CsvRecord {
+    const headerPositionToSplice = 1;
+    const headers = (<string>csvRecords[0])?.split(',');
+
+    if (!csvRecords || headers?.length !== 3) {
+      return {
+        headers: [],
+        rows: [],
+      };
+    }
+
+    const rows = csvRecords
+      .map((_, index) => {
+        const currentRecords = (<string>csvRecords[index])?.split(',');
+        return {
+          name: currentRecords[0].trim(),
+          cep: currentRecords[1].trim(),
+          score: currentRecords[2].trim(),
+        };
+      })
+      .splice(headerPositionToSplice);
+
+    return {
+      headers: headers,
+      rows: rows,
+    };
+  }
+
+  //@TODO - should implement
   private isValidCSVFile(file: File) {
     return file?.name?.endsWith('.csv');
   }

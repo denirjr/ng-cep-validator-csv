@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CsvService } from './services/csv.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class CsvUploadComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public getCsv($event: any) {
-    this.csv.get($event);
+  public getCsv($event: Event) {
+    this.csv.read($event).subscribe(console.log);
   }
 }
