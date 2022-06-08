@@ -21,9 +21,12 @@ export class TableComponent {
   };
 
   @Output()
-  onAction = new EventEmitter();
+  public onAction = new EventEmitter();
 
   public getTableItem(index: number, item: Row) {
-    this.onAction.emit();
+    this.onAction.emit({
+      id: index,
+      item: item,
+    });
   }
 }

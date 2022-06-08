@@ -3,13 +3,20 @@
     (onAction)="showModal(modalType.UPLOAD)"
     [title]="'upload CSV'"
   ></app-button>
-  <app-button [title]="'Apagar todos'"></app-button>
-  <app-button></app-button>
+
+  <app-button
+    (onAction)="deleteAllTableData()"
+    [title]="'Apagar todos'"
+  ></app-button>
 </section>
 
-<app-table (onAction)="showModal(modalType.EDIT)" [tableConfig]="tableConfig">
+<app-table (onAction)="editTableData($event)" [tableConfig]="tableConfig">
 </app-table>
 
 <ng-template #upload>
   <app-upload-modal></app-upload-modal>
+</ng-template>
+
+<ng-template #edit>
+  <app-edit-modal [editData]="editModalData"></app-edit-modal>
 </ng-template>

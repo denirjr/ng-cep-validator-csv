@@ -23,9 +23,8 @@ export class CsvService {
         observer.complete();
       };
 
-      reader.onerror = () => {
+      reader.onerror = () =>
         observer.error('error is occurred while reading file!');
-      };
     });
   }
 

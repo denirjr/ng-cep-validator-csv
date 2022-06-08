@@ -1,5 +1,5 @@
 export interface TableConfig {
-  columns: [string, string, string];
+  columns: string[];
   rows: Row[];
 }
 
