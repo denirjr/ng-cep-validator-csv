@@ -1,16 +1,16 @@
-import { csvRows } from 'src/app/shared/components/csv-upload/services/models/csv-record';
+import { CsvRow } from 'src/app/shared/components/csv-upload/services/models/csv-record';
 
 export const addRowsRule = (
-  receivesActualRows: csvRows[],
-  receivesNewRows: csvRows[]
-): csvRows[] => {
+  actualRows: CsvRow[],
+  newRows: CsvRow[]
+): CsvRow[] => {
   const rowsLimit = 5;
-  const actualRows = receivesActualRows?.length;
+  const actualRowsLength = actualRows?.length;
 
-  const amountToAdd = rowsLimit - actualRows;
-  const rowsToAdd = receivesNewRows?.slice(0, amountToAdd);
+  const amountToAdd = rowsLimit - actualRowsLength;
+  const rowsToAdd = newRows?.slice(0, amountToAdd);
 
-  return actualRows < rowsLimit
-    ? [...rowsToAdd, ...receivesActualRows]
-    : receivesActualRows;
+  return actualRowsLength <= rowsLimit
+    ? [...rowsToAdd, ...actualRows]
+    : actualRows;
 };

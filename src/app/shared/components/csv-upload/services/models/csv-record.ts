@@ -1,10 +1,11 @@
 export interface CsvRecord {
   headers: string[];
-  rows: csvRows[];
+  rows: CsvRow[];
 }
 
-export interface csvRows {
+export interface CsvRow {
   name: string;
   cep: string;
   score: string;
+  isValid: boolean;
 }

@@ -22,9 +22,9 @@ export class HomeStoreService {
     return this.record.asObservable();
   }
 
-  public set$(record: CsvRecord): void {
+  public set(record: CsvRecord): void {
     this.record.next({
-      headers: record.headers,
+      headers: record?.headers,
       rows: addRowsRule(this.lastRecord.rows, record?.rows),
     });
   }

@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
+
 import { SearchCep } from './models/search-cep';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,8 @@ import { map } from 'rxjs/operators';
 export class SearchCepService {
   constructor(private http: HttpClient) {}
 
-  public isValidCep(cep: string): Observable<boolean> {
-    const uri = `https://ws.apicep.com/cep.json?code=${cep}`;
-    return this.http.get<SearchCep>(uri).pipe(map((res) => res?.ok === true));
+  public fetch(cep: string): Observable<SearchCep> {
+    const uri = `https://ws.apicep.com/cep/${cep}.json`;
+    return this.http.get<SearchCep>(uri).pipe(distinctUntilChanged());
   }
 }

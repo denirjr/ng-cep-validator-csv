@@ -8,6 +8,7 @@
       <tr
         (click)="getTableItem(idx, row)"
         *ngFor="let row of tableConfig?.rows; let idx = index"
+        [ngClass]="{ 'is-valid': row?.isValid, 'is-invalid': row?.isValid === false }"
       >
         <td>{{ row?.name }}</td>
         <td>{{ row?.cep }}</td>

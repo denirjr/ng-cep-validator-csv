@@ -12,11 +12,11 @@ export class TableComponent {
   public tableConfig: TableConfig = {
     columns: ['', '', ''],
     rows: [
-      { name: '', cep: '', score: '' },
-      { name: '', cep: '', score: '' },
-      { name: '', cep: '', score: '' },
-      { name: '', cep: '', score: '' },
-      { name: '', cep: '', score: '' },
+      { name: '', cep: '', score: '', isValid: false },
+      { name: '', cep: '', score: '', isValid: false },
+      { name: '', cep: '', score: '', isValid: false },
+      { name: '', cep: '', score: '', isValid: false },
+      { name: '', cep: '', score: '', isValid: false },
     ],
   };
 

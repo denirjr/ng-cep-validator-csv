@@ -7,4 +7,5 @@ export interface Row {
   name: string;
   cep: string;
   score: string;
+  isValid: boolean;
 }

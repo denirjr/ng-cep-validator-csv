@@ -46,6 +46,7 @@ export class CsvService {
           name: currentRecords[0].trim(),
           cep: currentRecords[1].trim(),
           score: currentRecords[2].trim(),
+          isValid: false,
         };
       })
       .splice(headerPositionToSplice);
