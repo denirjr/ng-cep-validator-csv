@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { HomeStoreService } from '../../store/home-store.service';
 
@@ -13,8 +13,8 @@ export class EditModalComponent implements OnChanges {
   public editData: any;
 
   public editDataForm = new FormGroup({
-    name: new FormControl(''),
-    cep: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    cep: new FormControl('', Validators.required),
   });
 
   constructor(private homeStore$: HomeStoreService) {}

@@ -76,7 +76,12 @@ export class HomeComponent implements OnInit {
     this.homeStore$.deleteAll();
   }
 
-  public fetchConsult(): void {
+  public disableWhenNoData(): boolean {
+    return this.tableConfig?.rows?.length < 1;
+  }
+  
+  public disableWhenReachLimit(): boolean {
+    return this.tableConfig?.rows?.length === 5;
   }
 }
 

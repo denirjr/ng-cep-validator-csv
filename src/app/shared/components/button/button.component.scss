@@ -1,96 +1,108 @@
 @import "./../../../../styles.scss";
 
-.pure-material-button-contained {
+.btn {
   position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  border: none;
-  border-radius: 4px;
-  padding: 0 16px;
-  min-width: 64px;
-  height: 36px;
-  vertical-align: middle;
-  text-align: center;
-  text-overflow: ellipsis;
-  text-transform: uppercase;
-  @include button-theme($primary, #ffff);
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  font-family: var(
-    --pure-material-font,
-    "Roboto",
-    "Segoe UI",
-    BlinkMacSystemFont,
-    system-ui,
-    -apple-system
-  );
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 36px;
+
+  display: block;
+  margin: 30px auto;
+  padding: 0;
+
   overflow: hidden;
+
+  border-width: 0;
   outline: none;
-  cursor: pointer;
-  transition: box-shadow 0.2s;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+  @include button-theme($primary, #ffff);
+
+  transition: background-color 0.3s;
 }
 
-.pure-material-button-contained::-moz-focus-inner {
-  border: none;
+.btn:hover,
+.btn:focus {
+  @include button-theme($primary, #ffff);
 }
 
-/* Overlay */
-.pure-material-button-contained::before {
+.btn > * {
+  position: relative;
+}
+
+.btn span {
+  display: block;
+  padding: 12px 24px;
+}
+
+.btn:before {
   content: "";
+
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  @include button-theme($disabled, #fff);
-  opacity: 0;
-  transition: opacity 0.2s;
+  top: 50%;
+  left: 50%;
+
+  display: block;
+  width: 0;
+  padding-top: 0;
+
+  border-radius: 100%;
+
+  background-color: rgba(236, 240, 241, 0.3);
+
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
-/* Hover, Focus */
-.pure-material-button-contained:hover,
-.pure-material-button-contained:focus {
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-    0 1px 10px 0 rgba(0, 0, 0, 0.12);
+.btn:active:before {
+  width: 120%;
+  padding-top: 120%;
+
+  transition: width 0.2s ease-out, padding-top 0.2s ease-out;
 }
 
-.pure-material-button-contained:hover::before {
-  opacity: 0.08;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
-.pure-material-button-contained:focus::before {
-  opacity: 0.24;
+html {
+  position: relative;
+  height: 100%;
 }
 
-.pure-material-button-contained:hover:focus::before {
-  opacity: 0.3;
+body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  background-color: #ecf0f1;
+  color: #34495e;
+  text-align: center;
 }
 
-/* Active */
-.pure-material-button-contained:active {
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+h2 {
+  font-weight: normal;
 }
 
-.pure-material-button-contained:active::after {
-  opacity: 0.32;
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0s;
-}
-
-.pure-material-button-contained:disabled {
+.btn:disabled {
   @include button-theme($disabled, #ffff);
   box-shadow: none;
   cursor: initial;
 }
 
-.pure-material-button-contained:disabled::before {
+.btn:disabled::before {
   opacity: 0;
 }
 
-.pure-material-button-contained:disabled::after {
+.btn:disabled::after {
   opacity: 0;
 }

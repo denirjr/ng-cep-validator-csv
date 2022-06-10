@@ -1,11 +1,20 @@
 <form [formGroup]="editDataForm">
-  <label for="name">Name: </label>
+  <label for="name">Nome: </label>
   <input id="name" type="text" formControlName="name" />
 
-  <label for="cep">Last Name: </label>
+  <label for="cep">CEP: </label>
   <input id="cep" type="text" formControlName="cep" />
 </form>
-<button (click)="save()" type="submit" [disabled]="!editDataForm?.valid">
-  Salvar
-</button>
-<button (click)="delete()" [disabled]="!editDataForm?.valid">Delete</button>
+
+<div class="btn-wrapper">
+  <app-button
+    (onAction)="save()"
+    [isDisabled]="!editDataForm?.valid"
+    [type]="'submit'"
+    [title]="'Salvar'"
+  ></app-button>
+  <app-button
+    (onAction)="delete()"
+    [title]="'Deletar'"
+  ></app-button>
+</div>

@@ -1,10 +1,12 @@
 <section class="btn-wrapper">
   <app-button
+    [isDisabled]="disableWhenReachLimit()"
     (onAction)="showModal(modalType.UPLOAD)"
-    [title]="'upload CSV'"
+    [title]="'Upload CSV'"
   ></app-button>
 
   <app-button
+    [isDisabled]="disableWhenNoData()"
     (onAction)="deleteAllTableData()"
     [title]="'Apagar todos'"
   ></app-button>
@@ -19,8 +21,4 @@
 
 <ng-template #edit>
   <app-edit-modal [editData]="editModalData"></app-edit-modal>
-</ng-template>
-
-<ng-template #consult>
-  <app-consult-modal></app-consult-modal>
 </ng-template>

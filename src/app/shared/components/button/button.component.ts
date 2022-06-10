@@ -10,6 +10,8 @@ export class ButtonComponent {
   public isDisabled = false;
   @Input()
   public title = '';
+  @Input()
+  public type = 'text';
 
   @Output()
   public onAction = new EventEmitter();
