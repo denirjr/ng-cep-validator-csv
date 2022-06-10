@@ -1,18 +1,32 @@
 <div class="container">
-  <main class="card">
-    <div class="drop_box">
-      <header>
-        <h4>Selecione o arquivo aqui</h4>
-      </header>
-      <p>Arquivos suportados: CSV</p>
-      <input
-        type="file"
-        name="File Upload"
-        id="txtFileUpload"
-        (change)="getCsv($event)"
-        accept=".csv"
-      />
-      <!-- <button class="btn">Choose File</button> -->
-    </div>
-  </main>
+  <ng-container *ngIf="isInvalidUpload; else elseTemplate">
+    <main class="card">
+      <div [ngClass]="{ 'drop_box-invalid': isInvalidUpload }">
+        <header>
+          <h4>
+            Houve um erro feche o modal e faça upload novamente de um novo
+            arquivo
+          </h4>
+        </header>
+      </div>
+    </main>
+  </ng-container>
+
+  <ng-template #elseTemplate>
+    <main class="card">
+      <div class="drop_box">
+        <header>
+          <h4>Selecione o arquivo aqui</h4>
+        </header>
+        <p>Arquivos suportados: CSV</p>
+        <input
+          type="file"
+          name="File Upload"
+          id="txtFileUpload"
+          (change)="getCsv($event)"
+          accept=".csv"
+        />
+      </div>
+    </main>
+  </ng-template>
 </div>
