@@ -37,6 +37,7 @@ export class HomeStoreService {
             ...data,
             name: item?.name,
             cep: item?.cep,
+            isValid: item?.isValid,
           }
         : data;
 

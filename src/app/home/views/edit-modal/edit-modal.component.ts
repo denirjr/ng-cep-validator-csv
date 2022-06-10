@@ -1,5 +1,8 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CsvRow } from 'src/app/shared/components/csv-upload/services/models/csv-record';
+import { SearchCepService } from 'src/app/shared/services/search-cep/search-cep.service';
+import { ConsultService } from '../../services/consult.service';
 
 import { HomeStoreService } from '../../store/home-store.service';
 
@@ -17,7 +20,10 @@ export class EditModalComponent implements OnChanges {
     cep: new FormControl('', Validators.required),
   });
 
-  constructor(private homeStore$: HomeStoreService) {}
+  constructor(
+    private homeStore$: HomeStoreService,
+    private searchCep$: SearchCepService
+  ) {}
 
   ngOnChanges(): void {
     this.editDataForm.patchValue({
@@ -31,6 +37,13 @@ export class EditModalComponent implements OnChanges {
   }
 
   public save(): void {
-    this.homeStore$.editItem(this.editData?.id, this.editDataForm.value);
+    this.searchCep$.fetch(this.editDataForm.value.cep).subscribe((res) => {
+      const editedData = {
+        cep: this.editDataForm?.value?.cep,
+        isValid: res?.ok,
+        name: this.editDataForm?.value?.name,
+      };
+      this.homeStore$.editItem(this.editData?.id, editedData);
+    });
   }
 }
