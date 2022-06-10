@@ -19,12 +19,17 @@ export class CsvService {
         const csvData = reader?.result;
         const csvRecords = (<string>csvData)?.split(/\r\n|\n/);
 
-        observer.next(this.parseCsvRecord(csvRecords));
-        observer.complete();
+        if (this.isValidCSVFile(file)) {
+          observer.next(this.parseCsvRecord(csvRecords));
+          observer.complete();
+        } else {
+          reader.onerror = (err) =>
+            observer.error(`${err} - error is occurred while reading file!`);
+        }
       };
 
-      reader.onerror = () =>
-        observer.error('error is occurred while reading file!');
+      reader.onerror = (err) =>
+        observer.error(`${err} - error is occurred while reading file!`);
     });
   }
 
@@ -43,9 +48,9 @@ export class CsvService {
       .map((_, index) => {
         const currentRecords = (<string>csvRecords[index])?.split(',');
         return {
-          name: currentRecords[0].trim(),
-          cep: currentRecords[1].trim(),
-          score: currentRecords[2].trim(),
+          name: currentRecords[0]?.trim(),
+          cep: currentRecords[1]?.trim(),
+          score: currentRecords[2]?.trim(),
           isValid: false,
         };
       })
@@ -57,7 +62,6 @@ export class CsvService {
     };
   }
 
-  //@TODO - should implement
   private isValidCSVFile(file: File) {
     return file?.name?.endsWith('.csv');
   }

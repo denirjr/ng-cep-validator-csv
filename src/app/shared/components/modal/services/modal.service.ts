@@ -23,7 +23,6 @@ export class ModalService {
   public open(config: ModalConfig): ModalRef {
     const componentRef = this.createComponentRef();
     componentRef.instance.config = config;
-    console.log('open called');
     this.bodyInjector.stackBeforeAppRoot(componentRef);
     const modalRef = new ModalRef(componentRef);
     componentRef.instance.modalRef = modalRef;
